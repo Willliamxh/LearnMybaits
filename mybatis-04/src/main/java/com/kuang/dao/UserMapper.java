@@ -3,6 +3,7 @@ package com.kuang.dao;
 import com.kuang.pojo.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Willam_xh
@@ -10,7 +11,11 @@ import java.util.List;
  */
 public interface UserMapper {
 
+    //分页2
+    List<User> getUserByRowBounds();
 
+
+    List<User> getUserByLimit(Map<String,Integer> map);
 
     //查询全部的用户
     List<User> getUserList();

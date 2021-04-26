@@ -13,6 +13,20 @@
         <result column="pwd" property="password"/>
         
     </resultMap>
+
+<!--    分页-->
+    <!--//分页-->
+    <select id="getUserByLimit" parameterType="map" resultMap="UserMap">
+        select * from  mybatis.user limit #{startIndex},#{pageSize}
+    </select>
+
+    <!--分页2 了解即可  -->
+    <select id="getUserByRowBounds" resultMap="UserMap">
+        select * from  mybatis.user
+    </select>
+
+
+
     <!--id 是对应的namespace中的方法名-->
     <select id="getUserList" resultMap="UserMap"><!--这边还有别名 就是select id as ID 可以用-->
       select * from mybatis.user;
