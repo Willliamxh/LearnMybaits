@@ -9,6 +9,13 @@
 <!--        <property name="pwd" value="123456"/>--><!--在这边的话是可以重新在这边写属性-->
 <!--    </properties>-->
 
+<!--配置日志 让输出的东西给清楚点-->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+
+
 <!--这边里面写别名-->
     <typeAliases>
 <!--        <typeAlias type="com.kuang.pojo.User" alias="User"/>&lt;!&ndash;给实体类取别名&ndash;&gt;-->

@@ -4,8 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-    <environments default="development">
+    <properties resource="db.properties"/><!--可以直接引入配置文件-->
+<!--        <property name="username" value="root"/>-->
+<!--        <property name="pwd" value="123456"/>--><!--在这边的话是可以重新在这边写属性-->
+<!--    </properties>-->
+
+<!--这边里面写别名-->
+    <typeAliases>
+<!--        <typeAlias type="com.kuang.pojo.User" alias="User"/>&lt;!&ndash;给实体类取别名&ndash;&gt;-->
+        <package name="com.kuang.pojo"/> <!--别名就是这个类的小写字母 这边对应的也是user  如果实体类比较多用第二种 如果有注解别名为注解值-->
+
+    </typeAliases>
+
+
+
+    <environments default="development"><!--这边默认切换到development -->
         <environment id="development">
+            <transactionManager type="JDBC"/><!--事务管理器 -->
+            <dataSource type="POOLED"><!--数据源 -->
+                <property name="driver" value="${driver}"/><!--我们通过properties属性实现引用配置文件 -->
+                <property name="url" value="${url}"/><!--jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8-->
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+        
+        <environment id="test">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
@@ -14,10 +38,23 @@
                 <property name="password" value="123456"/>
             </dataSource>
         </environment>
+        
+        
+        
+        
     </environments>
 
     <!--每一个mapper。xml都需要再mybatis核心配置文件中注册-->
     <mappers>
+<!--        这边是根据xml路径去注册-->
         <mapper resource="com/kuang/dao/UserMapper.xml"/>
+        <!--       现在尝试用类来映射 但是使用class会出现一点问题
+要求接口和他的Mapper配置文件必须同名！
+接口和他的Mapper配置文件必须在同一个包下！-->
+<!--        <mapper class="com.kuang.dao.UserMapper"/>-->
+
+<!--        在用package扫描 如果文件名不一样的话 又要出现这个问题了-->
+<!--        <package name="com.kuang.dao"/>-->
+
     </mappers>
 </configuration>

@@ -6,8 +6,15 @@
 <mapper namespace="com.kuang.dao.UserMapper">
 
 
+    <resultMap id="UserMap" type="User">
+<!--        colunm 是一个字段 properties对应的是实体类的属性-->
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="pwd" property="password"/>
+        
+    </resultMap>
     <!--id 是对应的namespace中的方法名-->
-    <select id="getUserList" resultType="User"><!--这边还有别名可以用-->
+    <select id="getUserList" resultMap="UserMap"><!--这边还有别名可以用-->
       select * from mybatis.user;
    </select>
 

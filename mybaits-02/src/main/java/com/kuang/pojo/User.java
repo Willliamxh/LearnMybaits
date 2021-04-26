@@ -1,9 +1,12 @@
 package com.kuang.pojo;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * @author Willam_xh
  * @create 2021-04-18 10:18
  */
+@Alias("user")
 public class User {
     private int id;
     private String name;

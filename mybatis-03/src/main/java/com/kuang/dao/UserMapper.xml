@@ -6,19 +6,26 @@
 <mapper namespace="com.kuang.dao.UserMapper">
 
 
+    <resultMap id="UserMap" type="User">
+<!--        colunm 是一个字段 properties对应的是实体类的属性-->
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="pwd" property="password"/>
+        
+    </resultMap>
     <!--id 是对应的namespace中的方法名-->
-    <select id="getUserList" resultType="com.kuang.pojo.User">
+    <select id="getUserList" resultMap="UserMap"><!--这边还有别名 就是select id as ID 可以用-->
       select * from mybatis.user;
    </select>
 
 
-    <select id="getUserById" parameterType="int" resultType="com.kuang.pojo.User">
+    <select id="getUserById" parameterType="int" resultType="user">
         select * from mybatis.user where id = #{id};
     </select>
 
 
     <!--对象中的属性可以直接取出来-->
-    <insert id="addUser" parameterType="com.kuang.pojo.User" >
+    <insert id="addUser" parameterType="com.kuang.pojo.User" ><!--这边还有别名可以用-->
         insert into mybatis.user(id,name,pwd) values(#{id},#{name},#{pwd});
     </insert>
 

@@ -9,8 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kuang</groupId>
-    <artifactId>mybatis-03</artifactId>
+    <artifactId>mybatis-04</artifactId>
 
 
 </project>
