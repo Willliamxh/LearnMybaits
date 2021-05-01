@@ -2,6 +2,7 @@ import com.kuang.dao.BlogMapper;
 import com.kuang.pojo.Blog;
 import com.kuang.utils.IDUtils;
 import com.kuang.utils.MybaitsUtils;
+import org.apache.ibatis.cache.Cache;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
@@ -124,6 +125,8 @@ public class MyTest {
         ids.add(1);
         ids.add(2);
 //        ids.add(3);
+
+
         map.put("ids",ids);
         mapper.  queryBlogForeach(map);
         sqlSession.close();

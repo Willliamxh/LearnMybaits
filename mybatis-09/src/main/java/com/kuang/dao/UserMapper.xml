@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kuang.dao.UserMapper">
+
+
+
+    <!--在当前Mapper.xml中使用二级缓存-->
+<!--    <cache/>-->
+    <!--在当前Mapper.xml中使用二级缓存-->
+<!--    <cache  eviction="FIFO"-->
+<!--            flushInterval="60000"-->
+<!--            size="512"-->
+<!--            readOnly="true"/>-->
+    <!--在当前Mapper.xml中使用二级缓存-->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <resultMap id="UserMap" type="User">
+<!--        colunm 是一个字段 properties对应的是实体类的属性-->
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="pwd" property="password"/>
+        
+    </resultMap>
+    <!--id 是对应的namespace中的方法名-->
+    <select id="getUserList" resultMap="UserMap"><!--这边还有别名 就是select id as ID 可以用-->
+      select * from mybatis.user;
+   </select>
+
+
+    <select id="getUserById" parameterType="int" resultType="user">
+        select * from mybatis.user where id = #{id};
+    </select>
+
+
+    <!--对象中的属性可以直接取出来-->
+    <insert id="addUser" parameterType="com.kuang.pojo.User" ><!--这边还有别名可以用-->
+        insert into mybatis.user(id,name,pwd) values(#{id},#{name},#{pwd});
+    </insert>
+
+
+    <update id="updateUser" parameterType="com.kuang.pojo.User">
+        update mybatis.user set name=#{name},pwd=#{pwd}  where id= #{id};
+
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from mybatis.user where id = #{id};
+
+    </delete>
+
+
+
+
+
+</mapper>
